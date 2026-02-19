@@ -9,6 +9,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Car } from "lucide-react";
+import ProductList from "@/components/ProductList";
 
 const prisma = new PrismaClient();
 
@@ -24,7 +25,7 @@ export default async function Home() {
           เลือก สินค้า IT คณุภาพสูง พร้อมบริการจัดสเปคให้
         </p>
       </section>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {products.length > 0 ? (
           products.map((product) => (
             <Card
@@ -63,7 +64,8 @@ export default async function Home() {
             <p className="text-muted-foreground">ไม่มีสินค้าในขณะนี้</p>
           </div>
         )}
-      </div>
+      </div> */}
+      <ProductList initialProducts={products} />
     </div>
   );
 }
