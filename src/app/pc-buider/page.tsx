@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Plus, Trash2 } from "lucide-react";
 import { Product } from "@prisma/client";
-
+import ProductSelectModal from "@/components/ProductSelectModal"
 const specSteps = [
   { id: "cpu", name: "เลือก CPU", icon: "🧠" },
   { id: "mb", name: "เลือก Mainboard", icon: "🔌" },
@@ -15,6 +15,8 @@ const specSteps = [
 ];
 
 export default function PCBuildPage() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [activeCategory, setActiveCategory] = useState("")
   const [selectedItems, setSelectedItems] = useState<
     Record<string, Product | null>
   >({
@@ -28,6 +30,15 @@ export default function PCBuildPage() {
     return sum + (item?.price || 0);
   }, 0);
 
+  const handleOpenModal = (category: string) => {
+    setActiveCategory(category);
+    setIsModalOpen(true);
+  }
+  
+  const handleSelectProduct = (product: Product) => {
+    const stepId = specSteps.find(step => step.name.includes(product.category))?.id || activeCategory.toLowerCase();
+    setSelectedItems({ ...selectedItems, [activeCategory]: product });
+  }
   return (
     <div className="container mx-auto py-10 px-4">
       <h1 className="text-3xl font-bold mb-6 text-center">Set Spec For you</h1>
@@ -66,7 +77,7 @@ export default function PCBuildPage() {
                   <Trash2 className="h-4 w-4" />
                 </Button>
               ) : (
-                <Button size="icon" variant="outline" className="rounded-full">
+                <Button size="icon" variant="outline" className="rounded-full" onClick={}>
                   <Plus className="h-4 w-4" />
                 </Button>
               )}
