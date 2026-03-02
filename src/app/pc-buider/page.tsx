@@ -32,6 +32,10 @@ export default function PCBuildPage() {
 
   const handleOpenModal = (categoryId: string) => {
     const category = specSteps.find((s) => s.id === categoryId)?.dbCategory || "";
+    let socketFilter = ""
+    if(categoryId === "mb" && selectedItems.cpu) {
+      socketFilter = selectedItems.cpu.socket||"";
+    }
     setActiveCategory(categoryId);
     setIsModalOpen(true);
   };
@@ -133,6 +137,7 @@ export default function PCBuildPage() {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         category={specSteps.find(s => s.id === activeCategory)?.dbCategory || ""}
+        socket={activeCategory === "mb" ? selectedItems.cpu?.socket || "" : ""}
         onSelect={(product) =>
           setSelectedItems({ ...selectedItems, [activeCategory]: product })
         }

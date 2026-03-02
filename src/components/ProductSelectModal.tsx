@@ -12,6 +12,7 @@ import { ScrollArea } from "./ui/scroll-area";
 // import { ScrollArea } from "radix-ui";
 
 interface Props {
+  socket?: string;
   isOpen: boolean;
   onClose: () => void;
   category: string;
@@ -23,6 +24,7 @@ export default function ProductSelectModel({
   onClose,
   category,
   onSelect,
+  socket,
 }: Props) {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
@@ -30,14 +32,15 @@ export default function ProductSelectModel({
   useEffect(() => {
     if (isOpen && category) {
       setLoading(true);
-      fetch(`/api/products?category=${category}`)
+      const url = `/api/products?category=${category}${socket ? `&socket=${socket}` : ""}`;
+      fetch(url)
         .then((res) => res.json())
         .then((data) => {
           setProducts(data);
           setLoading(false);
         });
     }
-  }, [isOpen, category]);
+  }, [isOpen, category, socket]);
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>

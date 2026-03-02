@@ -1,22 +1,39 @@
-import { Button } from "@/components/ui/button"
-import { 
-  DropdownMenu, 
-  DropdownMenuContent, 
-  DropdownMenuItem, 
-  DropdownMenuTrigger 
-} from "@/components/ui/dropdown-menu"
-import { Monitor, Moon, Sun, Languages, ShoppingCart } from "lucide-react"
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Monitor, Moon, Sun, Languages, ShoppingCart } from "lucide-react";
+import Link from "next/link";
 
 export default function Navbar() {
   return (
     <nav className="border-b bg-white dark:bg-slate-950 px-6 py-3 flex justify-between items-center sticky top-0 z-50">
-      <div className="font-bold text-2xl tracking-tighter text-blue-600">IT-STORE</div>
-      
+      <div className="font-bold text-2xl tracking-tighter text-blue-600">
+        IT-STORE
+      </div>
+      <Link
+        href="/"
+        className="font-bold text-2xl tracking-tighter text-blue-600"
+      >
+        <Button
+          variant="ghost"
+          size="icon"
+          className="gap-2 text-slate-600 hover:text-blue-600"
+        >
+          <Monitor className="h-5 w-5" />
+          <span>จัดสเปคคอม</span>
+        </Button>
+      </Link>
       <div className="flex items-center gap-2">
         {/* ปุ่มเปลี่ยนภาษา */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon"><Languages className="h-5 w-5" /></Button>
+            <Button variant="ghost" size="icon">
+              <Languages className="h-5 w-5" />
+            </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuItem>ไทย (TH)</DropdownMenuItem>
@@ -27,7 +44,9 @@ export default function Navbar() {
         {/* ปุ่มเปลี่ยน Theme */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon"><Sun className="h-5 w-5" /></Button>
+            <Button variant="ghost" size="icon">
+              <Sun className="h-5 w-5" />
+            </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuItem>Light</DropdownMenuItem>
@@ -42,5 +61,5 @@ export default function Navbar() {
         </Button>
       </div>
     </nav>
-  )
+  );
 }
