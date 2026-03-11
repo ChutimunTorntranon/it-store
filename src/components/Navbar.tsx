@@ -11,11 +11,11 @@ import Link from "next/link";
 export default function Navbar() {
   return (
     <nav className="border-b bg-white dark:bg-slate-950 px-6 py-3 flex justify-between items-center sticky top-0 z-50">
-      <div className="font-bold text-2xl tracking-tighter text-blue-600">
+      <Link href="/" className="font-bold text-2xl tracking-tighter text-blue-600">
         IT-STORE
-      </div>
+      </Link>
       <Link
-        href="/"
+        href="/pc-builder"
         className="font-bold text-2xl tracking-tighter text-blue-600"
       >
         <Button
