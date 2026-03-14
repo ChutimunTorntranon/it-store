@@ -5,8 +5,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Monitor, Moon, Sun, Languages, ShoppingCart } from "lucide-react";
+import { Monitor, Moon, Sun, Languages, ShoppingCart, User } from "lucide-react";
 import Link from "next/link";
+import UserNav from "./UserNav";
 
 export default function Navbar() {
   return (
@@ -59,6 +60,7 @@ export default function Navbar() {
           <ShoppingCart className="h-5 w-5" />
           <span>ตะกร้า (0)</span>
         </Button>
+       <UserNav />
       </div>
     </nav>
   );
